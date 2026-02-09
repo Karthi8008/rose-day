@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Happy Teddy Day</title>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Segoe UI', sans-serif;
+        background: linear-gradient(135deg, #ffb6c1, #ffe4e1);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        overflow: hidden;
+    }
+
+    .card {
+        background: white;
+        border-radius: 20px;
+        padding: 30px;
+        text-align: center;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        max-width: 350px;
+        position: absolute;
+        transition: opacity 0.8s, transform 0.8s;
+        opacity: 0;
+        transform: scale(0.8);
+    }
+
+    .card.active {
+        opacity: 1;
+        transform: scale(1);
+        z-index: 10;
+    }
+
+    .card img {
+        width: 200px;
+        margin-bottom: 20px;
+    }
+
+    h1 {
+        color: #ff4d6d;
+        margin-bottom: 10px;
+    }
+
+    p {
+        color: #555;
+        font-size: 16px;
+    }
+
+    .heart {
+        font-size: 30px;
+        animation: beat 1s infinite;
+        margin-top: 20px;
+    }
+
+    @keyframes beat {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.2); }
+    }
+
+    .next-btn {
+        margin-top: 20px;
+        padding: 10px 20px;
+        background: #ff4d6d;
+        color: white;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        font-size: 16px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        transition: background 0.3s;
+    }
+
+    .next-btn:hover {
+        background: #ff1a4d;
+    }
+</style>
+</head>
+<body>
+
+<!-- PAGE 1 -->
+<div class="card active" id="page1">
+     <img src="love.png" alt="Teddy Bear">
+    <h1>Happy Teddy Day!</h1>
+    <p>This teddy is a small reminder of my love, hugs, and warmth—just for you 🧸💝</p>
+    <div class="heart">❤️</div>
+    <button class="next-btn" onclick="nextPage(2)">Next ➡️</button>
+</div>
+
+<!-- PAGE 2 -->
+<div class="card" id="page2">
+  <img src="love.png" alt="Teddy Bear">
+
+    <h1>Sending Hugs!</h1>
+    <p>Imagine this teddy wrapping you in a warm hug right now 🤗💖</p>
+    <div class="heart">💝</div>
+    <button class="next-btn" onclick="nextPage(3)">Next ➡️</button>
+</div>
+
+<!-- PAGE 3 -->
+<div class="card" id="page3">
+    <img src="love.png" alt="Teddy Bear">
+    <h1>Forever Yours</h1>
+    <p>Every smile, every heartbeat, is a part of my love for you 🧸❤️</p>
+    <div class="heart">💞</div>
+    <button class="next-btn" onclick="nextPage(1)">Restart 🔄</button>
+</div>
+
+<script>
+function nextPage(pageNumber) {
+    // Hide all pages
+    const pages = document.querySelectorAll('.card');
+    pages.forEach(p => p.classList.remove('active'));
+
+    // Show selected page
+    const next = document.getElementById('page' + pageNumber);
+    next.classList.add('active');
+}
+</script>
+
+</body>
+</html>
+
+
+
+
+
