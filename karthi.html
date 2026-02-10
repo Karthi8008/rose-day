@@ -1,128 +1,190 @@
-<!DOCTYPE html>
-<html lang="en">
+ <!DOCTYPE html>
+<html>
 <head>
 <meta charset="UTF-8">
-<title>Happy Teddy Day</title>
+<title>Romantic Teddy Reel</title>
+
 <style>
-    body {
-        margin: 0;
-        padding: 0;
-        font-family: 'Segoe UI', sans-serif;
-        background: linear-gradient(135deg, #ffb6c1, #ffe4e1);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        overflow: hidden;
-    }
+*{margin:0;padding:0;box-sizing:border-box}
 
-    .card {
-        background: white;
-        border-radius: 20px;
-        padding: 30px;
-        text-align: center;
-        box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-        max-width: 350px;
-        position: absolute;
-        transition: opacity 0.8s, transform 0.8s;
-        opacity: 0;
-        transform: scale(0.8);
-    }
+body{
+    height:100vh;
+    background:black;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+    font-family:'Segoe UI',sans-serif;
+}
 
-    .card.active {
-        opacity: 1;
-        transform: scale(1);
-        z-index: 10;
-    }
+/* Reel Frame */
+.reel{
+    width:360px;
+    height:640px;
+    background:linear-gradient(135deg,#ffd1dc,#ffe4e1,#ffb6c1);
+    border-radius:25px;
+    position:relative;
+    overflow:hidden;
+}
 
-    .card img {
-        width: 200px;
-        margin-bottom: 20px;
-    }
+/* Pages */
+.page{
+    position:absolute;
+    width:100%;
+    height:100%;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    opacity:0;
+    transform:translateX(100%);
+    transition:1s ease;
+}
 
-    h1 {
-        color: #ff4d6d;
-        margin-bottom: 10px;
-    }
+.page.active{
+    opacity:1;
+    transform:translateX(0);
+}
 
-    p {
-        color: #555;
-        font-size: 16px;
-    }
+/* Teddy */
+img{
+    width:220px;
+    animation:softMove 3s infinite;
+}
 
-    .heart {
-        font-size: 30px;
-        animation: beat 1s infinite;
-        margin-top: 20px;
-    }
+@keyframes softMove{
+    0%,100%{transform:translateY(0)}
+    50%{transform:translateY(-8px)}
+}
 
-    @keyframes beat {
-        0%, 100% { transform: scale(1); }
-        50% { transform: scale(1.2); }
-    }
+/* Text */
+h1{
+    color:#ff2f6d;
+    font-size:26px;
+    margin:15px 0 8px;
+}
 
-    .next-btn {
-        margin-top: 20px;
-        padding: 10px 20px;
-        background: #ff4d6d;
-        color: white;
-        border: none;
-        border-radius: 10px;
-        cursor: pointer;
-        font-size: 16px;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-        transition: background 0.3s;
-    }
+p{
+    color:#555;
+    font-size:15px;
+    padding:0 25px;
+    line-height:1.6;
+}
 
-    .next-btn:hover {
-        background: #ff1a4d;
-    }
+/* Heart beat */
+.heart{
+    font-size:32px;
+    margin:12px 0;
+    animation:beat 1.2s infinite;
+}
+@keyframes beat{
+    50%{transform:scale(1.25)}
+}
+
+/* Button */
+button{
+    margin-top:18px;
+    padding:10px 22px;
+    border:none;
+    border-radius:25px;
+    background:linear-gradient(to right,#ff416c,#ff4b2b);
+    color:white;
+    font-size:14px;
+    cursor:pointer;
+    box-shadow:0 6px 18px rgba(0,0,0,.3);
+    transition:.3s;
+}
+button:hover{transform:scale(1.1)}
+
+/* Floating hearts */
+.float{
+    position:absolute;
+    bottom:-30px;
+    animation:float 6s linear infinite;
+    opacity:.8;
+}
+@keyframes float{
+    to{transform:translateY(-700px);opacity:0}
+}
 </style>
 </head>
+
 <body>
 
-<!-- PAGE 1 -->
-<div class="card active" id="page1">
-     <img src="love.png" alt="Teddy Bear">
-    <h1>Happy Teddy Day!</h1>
-    <p>This teddy is a small reminder of my love, hugs, and warmth—just for you 🧸💝</p>
-    <div class="heart">❤️</div>
-    <button class="next-btn" onclick="nextPage(2)">Next ➡️</button>
-</div>
+<div class="reel">
 
-<!-- PAGE 2 -->
-<div class="card" id="page2">
-  <img src="love.png" alt="Teddy Bear">
+    <!-- PAGE 1 -->
+    <div class="page active" id="p1">
+        <h1> Ethu unnaku than dii Udhaya 💖</h1>
+        <p>Indha small surprise… only for you 🌸</p>
+        <div class="heart">💗</div>
+        <button onclick="go(2)">Next ➡️</button>
+    </div>
 
-    <h1>Sending Hugs!</h1>
-    <p>Imagine this teddy wrapping you in a warm hug right now 🤗💖</p>
-    <div class="heart">💝</div>
-    <button class="next-btn" onclick="nextPage(3)">Next ➡️</button>
-</div>
+    <!-- PAGE 2 -->
+    <div class="page" id="p2">
+        <img src="love.png">
+        <h1>Happy Teddy Day 🧸</h1>
+        <p>Indha teddy maadhiri,  
+        naanum eppavume un pakkathula iruppen dii thango 💕</p>
+        <div class="heart">💓</div>
+        <button onclick="go(3)">Next ➡️</button>
+    </div>
 
-<!-- PAGE 3 -->
-<div class="card" id="page3">
-    <img src="love.png" alt="Teddy Bear">
-    <h1>Forever Yours</h1>
-    <p>Every smile, every heartbeat, is a part of my love for you 🧸❤️</p>
-    <div class="heart">💞</div>
-    <button class="next-btn" onclick="nextPage(1)">Restart 🔄</button>
+    <!-- PAGE 3 -->
+    <div class="page" id="p3">
+        <img src="love.png">
+        <h1>Warm Hug 🤍</h1>
+        <p>Words illa…  
+        just calm, care & a silent hug 🤗</p>
+        <div class="heart">💞</div>
+        <button onclick="go(4)">Next ➡️</button>
+    </div>
+
+    <!-- PAGE 4 -->
+    <div class="page" id="p4">
+        <img src="love.png">
+        <h1>Always & Forever ✨</h1>
+        <p>Un smile-ku reason-aa irukkanum nu thaan  
+        ennoda wish 💖</p>
+        <div class="heart">❤️</div>
+        <button onclick="go(5)">Next ➡️</button>
+    </div>
+
+    <!-- PAGE 5 -->
+    <div class="page" id="p5">
+        <img src="love.png">
+        <h1>Stay Happy 🌷</h1>
+        <p>Indha Teddy Day-la  
+        un heart full-aa love irukkanum athu naana irukanum avalothan dii chelow..🧸💕</p>
+        <div class="heart">💘</div>
+        <button onclick="go(1)">Replay 🔄</button>
+    </div>
+
 </div>
 
 <script>
-function nextPage(pageNumber) {
-    // Hide all pages
-    const pages = document.querySelectorAll('.card');
-    pages.forEach(p => p.classList.remove('active'));
-
-    // Show selected page
-    const next = document.getElementById('page' + pageNumber);
-    next.classList.add('active');
+function go(n){
+    document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+    document.getElementById("p"+n).classList.add('active');
 }
+
+/* Floating hearts */
+setInterval(()=>{
+    const f=document.createElement("div");
+    f.className="float";
+    f.innerHTML="💗";
+    f.style.left=Math.random()*360+"px";
+    f.style.fontSize=Math.random()*18+18+"px";
+    document.querySelector(".reel").appendChild(f);
+    setTimeout(()=>f.remove(),6000);
+},400);
 </script>
 
 </body>
 </html>
+
 
 
 
