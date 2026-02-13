@@ -1,0 +1,145 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Love Multiverse Portal 💖</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Segoe UI;}
+html,body{width:100%;height:100%;overflow:hidden;display:flex;justify-content:center;align-items:center;flex-direction:column;background:black;color:white;}
+
+/* Background: image fallback + video */
+#bgImage, #bgVideo{
+  position:fixed;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:-2;
+}
+#bgVideo{display:none;}
+
+/* Portal */
+.portal{
+  width:40vw; max-width:200px;
+  height:40vw; max-height:200px;
+  border-radius:50%;border:6px solid #ff69b4;
+  box-shadow:0 0 60px #ff69b4,inset 0 0 40px #ff85c1;
+  animation:spin 4s linear infinite,pulse 2s ease-in-out infinite;
+  cursor:pointer;transition:0.3s;
+}
+@keyframes spin{100%{transform:rotate(360deg);}}
+@keyframes pulse{0%,100%{transform:scale(1);}50%{transform:scale(1.1);}}
+
+/* Buttons & text */
+h1{text-align:center;margin-top:15px;font-size:1.5em;}
+button{margin-top:12px;padding:12px 18px;border:none;border-radius:20px;cursor:pointer;background:#ff69b4;color:white;font-size:1em;transition:0.3s;}
+button:hover{transform:scale(1.05);}
+#controls{display:none;flex-direction:column;align-items:center;}
+#message{margin-top:18px;min-height:50px;text-align:center;font-size:1em;}
+</style>
+</head>
+<body>
+
+<img id="bgImage" src="https://via.placeholder.com/1080x1920?text=Love+Multiverse" alt="placeholder">
+<video id="bgVideo" muted playsinline loop></video>
+
+<div class="portal" onclick="enterMultiverse()"></div>
+<h1>Portal la tap pannu dii thango 💫</h1>
+
+<div id="controls">
+  <button onclick="setUniverse('fire')">🔥 Fire kiss</button>
+  <button onclick="setUniverse('ice')">❄️ Ice kiss</button>
+  <button onclick="setUniverse('galaxy')">🌌 Galaxy kiss</button>
+  <button onclick="setUniverse('royal')">👑 Royal kiss</button>
+</div>
+
+<div id="message"></div>
+
+<script>
+const universeVideos = {
+  fire:"https://www.videvo.net/videvo_files/converted/2016_12/preview/160810_C_011_Looping_Fire.mp478827.webm",
+  ice:"https://www.videvo.net/videvo_files/converted/2016_12/preview/160810_C_011_Looping_Ice.mp478827.webm",
+  galaxy:"https://www.videvo.net/videvo_files/converted/2016_12/preview/160810_C_011_Looping_Galaxy_01.mp478827.webm",
+  royal:"https://www.videvo.net/videvo_files/converted/2016_12/preview/160810_C_011_Looping_Royal.mp478827.webm"
+};
+
+const universeImages = {
+  fire:"https://via.placeholder.com/1080x1920/ff4500/fff?text=🔥Fire+Love",
+  ice:"https://via.placeholder.com/1080x1920/00bfff/fff?text=❄️Ice+Love",
+  galaxy:"https://via.placeholder.com/1080x1920/8a2be2/fff?text=🌌Galaxy+Love",
+  royal:"https://via.placeholder.com/1080x1920/ffd700/000?text=👑Royal+Love"
+};
+
+function enterMultiverse(){
+  document.querySelector(".portal").style.display="none";
+  document.querySelector("h1").innerText="Choose Your kiss Universe 💖";
+  document.getElementById("controls").style.display="flex";
+}
+
+function setUniverse(type){
+  const video = document.getElementById("bgVideo");
+  const img = document.getElementById("bgImage");
+
+  img.src = universeImages[type];
+  img.style.display = "block";
+
+  video.src = universeVideos[type];
+  video.style.display = "block";
+
+  const playPromise = video.play();
+  if(playPromise !== undefined){
+    playPromise.then(()=>img.style.display="none").catch(()=>console.log("Video blocked, showing fallback"));
+  }
+
+  const messages = {
+   fire:"🔥 Your love burns hotter than the sun!",
+    ice:"❄️ Even the coldest heart melts for you!",
+    galaxy:"🌌 Our love is written in the stars!",
+    royal:"👑 You are the Empress of my eternal kingdom!" 
+};
+  document.getElementById("message").innerText = messages[type];
+
+  ultimateKiss(type);
+}
+
+function ultimateKiss(type){
+  const kissEmojis = {fire:"💋🔥", ice:"💋❄️", galaxy:"💋✨", royal:"💋👑"};
+  const colors = {fire:"orange", ice:"lightblue", galaxy:"violet", royal:"gold"};
+
+  for(let i=0;i<30;i++){
+    let kiss = document.createElement("div");
+    kiss.innerText = kissEmojis[type];
+    kiss.style.position = "absolute";
+    kiss.style.left = "50%";
+    kiss.style.top = "50%";
+    kiss.style.transform = "translate(-50%,-50%) rotate(0deg)";
+    kiss.style.color = colors[type];
+    kiss.style.fontSize = (20 + Math.random()*20) + "px";
+    document.body.appendChild(kiss);
+
+    let x = Math.random()*300-150;
+    let y = Math.random()*300-150;
+    let r = Math.random()*720;
+
+    kiss.animate([
+      {transform:"translate(-50%,-50%) rotate(0deg)",opacity:1},
+      {transform:`translate(${x}px,${y}px) rotate(${r}deg)`,opacity:0}
+    ],{duration:1500,easing:"ease-out"});
+    setTimeout(()=>kiss.remove(),1600);
+  }
+}
+
+function createHeart(){
+  let heart = document.createElement("div");
+  heart.innerText = "💖";
+  heart.style.position = "absolute";
+  heart.style.left = Math.random()*100+"vw";
+  heart.style.top = "100vh";
+  heart.style.fontSize = (Math.random()*15+15)+"px";
+  heart.style.opacity = 0.5;
+  document.body.appendChild(heart);
+
+  heart.animate([{transform:"translateY(0)",opacity:0.5},{transform:"translateY(-120vh)",opacity:1}],
+                 {duration:4000+Math.random()*2000,easing:"linear"});
+  setTimeout(()=>heart.remove(),6000);
+}
+setInterval(createHeart,500);
+</script>
+</body>
+</html>
